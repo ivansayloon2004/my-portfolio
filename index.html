@@ -1,0 +1,1786 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="description"
+  content="Portfolio of Ivan Rhay L. Sayloon, a Computer Engineering student building practical web systems and growing in IT support, networking, and software development."
+/>
+<meta name="theme-color" content="#0b1220" />
+<title>Ivan Rhay L. Sayloon | Computer Engineering Student</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  :root {
+    --bg: #0b1220;
+    --bg-soft: #121c31;
+    --surface: rgba(17, 24, 39, 0.78);
+    --surface-strong: #111a2e;
+    --surface-alt: #0f1729;
+    --border: rgba(88, 166, 255, 0.18);
+    --border-strong: rgba(34, 211, 238, 0.3);
+    --text: #edf3ff;
+    --muted: #9bb0d1;
+    --subtle: #6f85a9;
+    --accent: #58a6ff;
+    --accent-2: #22d3ee;
+    --accent-warm: #f59e0b;
+    --shadow: 0 24px 60px rgba(3, 10, 23, 0.45);
+    --radius: 24px;
+    --radius-md: 18px;
+    --radius-sm: 12px;
+    --max-width: 1140px;
+  }
+
+  [data-theme="light"] {
+    --bg: #eef4ff;
+    --bg-soft: #dfe9fb;
+    --surface: rgba(255, 255, 255, 0.86);
+    --surface-strong: #ffffff;
+    --surface-alt: #f7faff;
+    --border: rgba(54, 99, 183, 0.14);
+    --border-strong: rgba(14, 165, 233, 0.24);
+    --text: #15233d;
+    --muted: #44597e;
+    --subtle: #6d7f9e;
+    --shadow: 0 24px 50px rgba(66, 94, 140, 0.12);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100vh;
+    font-family: "Space Grotesk", sans-serif;
+    background:
+      radial-gradient(circle at top right, rgba(34, 211, 238, 0.08), transparent 30%),
+      radial-gradient(circle at bottom left, rgba(88, 166, 255, 0.09), transparent 35%),
+      var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  button,
+  input,
+  textarea {
+    font: inherit;
+  }
+
+  ::selection {
+    background: rgba(88, 166, 255, 0.24);
+  }
+
+  .container {
+    width: min(var(--max-width), calc(100% - 2.2rem));
+    margin: 0 auto;
+  }
+
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(16px);
+    background: rgba(11, 18, 32, 0.72);
+    border-bottom: 1px solid var(--border);
+  }
+
+  [data-theme="light"] .site-nav {
+    background: rgba(238, 244, 255, 0.8);
+  }
+
+  .site-nav-inner {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .brand {
+    font-family: "Sora", sans-serif;
+    font-size: 1.02rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    text-decoration: none;
+  }
+
+  .brand span {
+    color: var(--accent);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.45rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    position: relative;
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.92rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.current {
+    color: var(--text);
+  }
+
+  .nav-links a.current::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.45rem;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .resume-link,
+  .theme-btn,
+  .hamburger {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+  }
+
+  .resume-link {
+    padding: 0.72rem 1rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .resume-link:hover,
+  .theme-btn:hover,
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .btn-inline:hover {
+    transform: translateY(-2px);
+  }
+
+  .theme-btn {
+    min-width: 96px;
+    border-radius: 999px;
+    padding: 0.72rem 0.95rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .hamburger {
+    display: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .hamburger span {
+    width: 18px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 999px;
+  }
+
+  section {
+    padding: 5.5rem 0;
+  }
+
+  .hero {
+    padding: 5.25rem 0 4.5rem;
+  }
+
+  .hero-shell {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2rem;
+    align-items: stretch;
+  }
+
+  .hero-copy,
+  .hero-panel,
+  .panel-card,
+  .project-card,
+  .timeline-card,
+  .edu-card,
+  .contact-card,
+  .contact-form {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(14px);
+  }
+
+  .hero-copy,
+  .hero-panel {
+    border-radius: calc(var(--radius) + 4px);
+    overflow: hidden;
+  }
+
+  .hero-copy {
+    padding: 2.6rem;
+    position: relative;
+    background:
+      linear-gradient(180deg, rgba(88, 166, 255, 0.08), transparent 28%),
+      var(--surface);
+  }
+
+  .hero-copy::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(88, 166, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(88, 166, 255, 0.05) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.18), transparent 72%);
+    pointer-events: none;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.42rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid rgba(88, 166, 255, 0.24);
+    background: rgba(88, 166, 255, 0.1);
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--accent-2);
+    box-shadow: 0 0 0 6px rgba(34, 211, 238, 0.13);
+  }
+
+  .hero-title {
+    margin-top: 1.5rem;
+    font-family: "Sora", sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.45rem);
+    line-height: 1.04;
+    letter-spacing: -0.06em;
+  }
+
+  .hero-title span {
+    display: block;
+    color: var(--accent);
+  }
+
+  .hero-lead {
+    margin-top: 1.05rem;
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 58ch;
+  }
+
+  .hero-summary {
+    margin-top: 1.1rem;
+    max-width: 58ch;
+    color: var(--muted);
+    font-size: 0.98rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 2rem;
+  }
+
+  .btn-primary,
+  .btn-secondary,
+  .btn-inline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+
+  .btn-primary {
+    padding: 0.92rem 1.2rem;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #07111f;
+  }
+
+  .btn-secondary {
+    padding: 0.92rem 1.2rem;
+    border: 1px solid var(--border-strong);
+    background: rgba(88, 166, 255, 0.07);
+    color: var(--text);
+  }
+
+  .btn-inline {
+    padding: 0.72rem 1rem;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    font-size: 0.88rem;
+  }
+
+  .hero-stats {
+    margin-top: 2.1rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.8rem;
+  }
+
+  .stat-card {
+    padding: 1rem;
+    border-radius: var(--radius-sm);
+    background: rgba(8, 14, 27, 0.5);
+    border: 1px solid rgba(88, 166, 255, 0.12);
+  }
+
+  [data-theme="light"] .stat-card {
+    background: rgba(255, 255, 255, 0.74);
+  }
+
+  .stat-card strong {
+    display: block;
+    font-family: "Sora", sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: -0.05em;
+  }
+
+  .stat-card span {
+    display: block;
+    margin-top: 0.12rem;
+    color: var(--subtle);
+    font-size: 0.82rem;
+  }
+
+  .hero-panel {
+    padding: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background:
+      linear-gradient(160deg, rgba(34, 211, 238, 0.12), transparent 30%),
+      linear-gradient(15deg, rgba(88, 166, 255, 0.12), transparent 40%),
+      var(--surface);
+  }
+
+  .identity-card {
+    border-radius: var(--radius);
+    padding: 1.4rem;
+    min-height: 270px;
+    background: rgba(7, 13, 24, 0.56);
+    border: 1px solid rgba(88, 166, 255, 0.14);
+    display: grid;
+    grid-template-columns: 132px 1fr;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  [data-theme="light"] .identity-card {
+    background: rgba(255, 255, 255, 0.65);
+  }
+
+  .profile-photo-wrap {
+    width: 132px;
+    height: 156px;
+    border-radius: 28px;
+    padding: 4px;
+    background: linear-gradient(160deg, rgba(88, 166, 255, 0.88), rgba(34, 211, 238, 0.72));
+    box-shadow: 0 18px 34px rgba(7, 13, 24, 0.28);
+  }
+
+  .profile-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    object-fit: cover;
+    object-position: center 18%;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .identity-label {
+    color: var(--accent-2);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+  }
+
+  .identity-card h2 {
+    margin-top: 0.5rem;
+    font-family: "Sora", sans-serif;
+    font-size: 1.45rem;
+    line-height: 1.2;
+  }
+
+  .identity-card p {
+    margin-top: 0.7rem;
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  .signal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.8rem;
+  }
+
+  .signal-card {
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    background: rgba(8, 14, 27, 0.5);
+    border: 1px solid rgba(88, 166, 255, 0.12);
+  }
+
+  [data-theme="light"] .signal-card {
+    background: rgba(255, 255, 255, 0.74);
+  }
+
+  .signal-card span {
+    display: block;
+    color: var(--subtle);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+  }
+
+  .signal-card strong {
+    display: block;
+    margin-top: 0.48rem;
+    font-size: 0.98rem;
+    line-height: 1.4;
+  }
+
+  .section-head {
+    margin-bottom: 2.1rem;
+  }
+
+  .section-label {
+    color: var(--accent-2);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 700;
+  }
+
+  .section-title {
+    margin-top: 0.75rem;
+    font-family: "Sora", sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.06;
+    letter-spacing: -0.05em;
+  }
+
+  .section-copy {
+    margin-top: 0.95rem;
+    max-width: 66ch;
+    color: var(--muted);
+  }
+
+  .about-grid,
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 0.96fr 1.04fr;
+    gap: 1.25rem;
+  }
+
+  .panel-card {
+    padding: 1.6rem;
+    border-radius: var(--radius);
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin: 1.1rem 0 1.4rem;
+  }
+
+  .tag {
+    border-radius: 999px;
+    border: 1px solid rgba(88, 166, 255, 0.18);
+    background: rgba(88, 166, 255, 0.08);
+    color: var(--text);
+    padding: 0.45rem 0.8rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+  }
+
+  .body-copy + .body-copy {
+    margin-top: 1rem;
+  }
+
+  .body-copy {
+    color: var(--muted);
+    font-size: 0.97rem;
+  }
+
+  .fact-grid,
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+    margin-top: 1.35rem;
+  }
+
+  .fact-card,
+  .edu-card {
+    padding: 1rem;
+    border-radius: var(--radius-sm);
+    background: rgba(8, 14, 27, 0.42);
+    border: 1px solid rgba(88, 166, 255, 0.12);
+  }
+
+  [data-theme="light"] .fact-card,
+  [data-theme="light"] .edu-card {
+    background: rgba(255, 255, 255, 0.76);
+  }
+
+  .fact-card span,
+  .edu-card span {
+    display: block;
+    color: var(--subtle);
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+  }
+
+  .fact-card strong,
+  .edu-card strong {
+    display: block;
+    margin-top: 0.38rem;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .list-block {
+    margin-top: 1.2rem;
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .list-item {
+    display: grid;
+    grid-template-columns: 18px 1fr;
+    gap: 0.75rem;
+    align-items: start;
+    color: var(--muted);
+    font-size: 0.94rem;
+  }
+
+  .list-item::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    margin-top: 0.45rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    box-shadow: 0 0 0 7px rgba(88, 166, 255, 0.09);
+  }
+
+  .skills-grid,
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .skill-card {
+    border-radius: var(--radius);
+    padding: 1.4rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+
+  .skill-card h3,
+  .project-card h3,
+  .timeline-card h3,
+  .contact-card h3 {
+    font-family: "Sora", sans-serif;
+    font-size: 1.08rem;
+    line-height: 1.3;
+  }
+
+  .skill-card p,
+  .project-card p,
+  .timeline-card p,
+  .edu-card p,
+  .contact-card p {
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  .skill-card p {
+    margin-top: 0.7rem;
+  }
+
+  .skill-topline,
+  .project-topline {
+    color: var(--accent-2);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+
+  .mini-tags {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  .mini-tags span {
+    padding: 0.34rem 0.62rem;
+    border-radius: 999px;
+    border: 1px solid rgba(88, 166, 255, 0.16);
+    background: rgba(88, 166, 255, 0.08);
+    color: var(--text);
+    font-size: 0.74rem;
+  }
+
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.45rem;
+    border-radius: var(--radius);
+  }
+
+  .project-title-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .project-status {
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.22);
+    color: #ffd48a;
+    font-size: 0.72rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .project-list {
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .project-list li {
+    list-style: none;
+    color: var(--muted);
+    font-size: 0.9rem;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .project-list li::before {
+    content: "";
+    position: absolute;
+    top: 0.65rem;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--accent-2);
+  }
+
+  .project-actions {
+    margin-top: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .timeline {
+    position: relative;
+    margin-top: 0.8rem;
+    padding-left: 1.5rem;
+  }
+
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 0.32rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, var(--accent), var(--accent-2), transparent);
+  }
+
+  .timeline-card {
+    position: relative;
+    margin-top: 1.2rem;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+  }
+
+  .timeline-card::before {
+    content: "";
+    position: absolute;
+    left: -1.42rem;
+    top: 1.45rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    background: var(--accent);
+    box-shadow: 0 0 0 8px rgba(88, 166, 255, 0.12);
+  }
+
+  .timeline-meta {
+    color: var(--accent-2);
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+  }
+
+  .timeline-card h3 {
+    margin-top: 0.42rem;
+  }
+
+  .timeline-card p {
+    margin-top: 0.5rem;
+  }
+
+  .contact-stack {
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .contact-card {
+    padding: 1.1rem 1.15rem;
+    border-radius: var(--radius-md);
+  }
+
+  .contact-card p {
+    margin-top: 0.35rem;
+  }
+
+  .contact-card a {
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .contact-form {
+    border-radius: var(--radius);
+    padding: 1.6rem;
+  }
+
+  .form-helper {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-top: 0.4rem;
+    margin-bottom: 1.35rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+  }
+
+  .field {
+    display: grid;
+    gap: 0.45rem;
+    margin-bottom: 0.95rem;
+  }
+
+  .field label {
+    color: var(--muted);
+    font-size: 0.83rem;
+    font-weight: 600;
+  }
+
+  .field input,
+  .field textarea {
+    width: 100%;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: rgba(8, 14, 27, 0.52);
+    color: var(--text);
+    padding: 0.92rem 1rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  [data-theme="light"] .field input,
+  [data-theme="light"] .field textarea {
+    background: rgba(255, 255, 255, 0.88);
+  }
+
+  .field input:focus,
+  .field textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.12);
+  }
+
+  .field textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+
+  .submit-btn {
+    width: 100%;
+    margin-top: 0.2rem;
+    padding: 1rem 1.1rem;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #07111f;
+    font-weight: 800;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 35px rgba(34, 211, 238, 0.22);
+  }
+
+  .submit-note {
+    margin-top: 0.75rem;
+    color: var(--subtle);
+    font-size: 0.82rem;
+  }
+
+  .submit-note.success {
+    color: #7ee6a2;
+  }
+
+  .submit-note.error {
+    color: #ff9c9c;
+  }
+
+  footer {
+    padding: 2.2rem 0 3rem;
+  }
+
+  .footer-social {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    padding-bottom: 1.35rem;
+  }
+
+  .social-icon-link {
+    width: 52px;
+    height: 52px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    border: 1px solid rgba(88, 166, 255, 0.18);
+    background: rgba(88, 166, 255, 0.08);
+    color: var(--text);
+    text-decoration: none;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .social-icon-link:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    background: rgba(88, 166, 255, 0.14);
+  }
+
+  .social-icon {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+    display: block;
+  }
+
+  .footer-shell {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--border);
+    color: var(--subtle);
+    font-size: 0.86rem;
+  }
+
+  .footer-shell strong {
+    color: var(--text);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .hero-shell,
+    .about-grid,
+    .contact-grid,
+    .skills-grid,
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .signal-grid,
+    .hero-stats,
+    .fact-grid,
+    .edu-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 820px) {
+    .site-nav-inner {
+      min-height: 72px;
+    }
+
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0.6rem);
+      left: 1.1rem;
+      right: 1.1rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.1rem;
+      border-radius: 20px;
+      background: var(--surface-strong);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .nav-links.open {
+      display: flex;
+    }
+
+    .resume-link {
+      display: none;
+    }
+
+    .hamburger {
+      display: inline-flex;
+    }
+
+    .hero-copy,
+    .hero-panel,
+    .panel-card,
+    .project-card,
+    .timeline-card,
+    .contact-form {
+      box-shadow: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .container {
+      width: min(var(--max-width), calc(100% - 1.2rem));
+    }
+
+    section,
+    .hero {
+      padding: 4.4rem 0;
+    }
+
+    .hero-copy,
+    .hero-panel,
+    .panel-card,
+    .project-card,
+    .timeline-card,
+    .contact-form {
+      padding-left: 1.15rem;
+      padding-right: 1.15rem;
+    }
+
+    .identity-card {
+      grid-template-columns: 1fr;
+    }
+
+    .profile-photo-wrap {
+      margin: 0 auto;
+    }
+
+    .hero-actions,
+    .project-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .hero-stats,
+    .signal-grid,
+    .fact-grid,
+    .edu-grid,
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-shell {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="container site-nav-inner">
+    <a class="brand" href="#hero">Ivan <span>Sayloon</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a class="resume-link" href="./resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+      <button class="theme-btn" id="themeToggle" type="button" aria-label="Toggle color theme">Light mode</button>
+      <button class="hamburger" id="hamburger" type="button" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="hero" id="hero">
+    <div class="container hero-shell">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Open for work opportunities</p>
+        <h1 class="hero-title">
+          Ivan Rhay L.
+          <span>Sayloon</span>
+        </h1>
+        <p class="hero-lead">
+          Computer Engineering student building practical web systems, stronger frontend
+          interfaces, and project-driven development experience.
+        </p>
+        <p class="hero-summary">
+          I enjoy turning ideas into useful tools that solve everyday problems. My recent work
+          includes an inventory tracker for small businesses, a bus ticketing system, and an
+          educational crypto project that makes digital asset concepts easier to understand.
+        </p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#projects">See Projects</a>
+          <a class="btn-secondary" href="./resume.pdf" target="_blank" rel="noreferrer">Download Resume</a>
+          <a
+            class="btn-inline email-link"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=ivansayloon20@gmail.com&su=Portfolio%20Inquiry"
+            target="_blank"
+            rel="noreferrer"
+            data-email-subject="Portfolio Inquiry"
+          >Email Me</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-card">
+            <strong>3</strong>
+            <span>Featured projects</span>
+          </div>
+          <div class="stat-card">
+            <strong>Frontend</strong>
+            <span>Project-based web experience</span>
+          </div>
+          <div class="stat-card">
+            <strong>2027</strong>
+            <span>Expected graduation</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-panel reveal">
+        <div class="identity-card">
+          <div class="profile-photo-wrap">
+            <img class="profile-photo" src="./profile.jpg" alt="Portrait of Ivan Rhay L. Sayloon" />
+          </div>
+          <div>
+            <p class="identity-label">Current focus</p>
+            <h2>Frontend development, web systems, and continuous learning</h2>
+            <p>
+              Based in Naga City, Cebu, I am growing through real project work, frontend
+              practice, and steady improvement in usability, structure, and implementation.
+            </p>
+          </div>
+        </div>
+        <div class="signal-grid">
+          <div class="signal-card">
+            <span>Studying at</span>
+            <strong>University of Cebu - Main Campus</strong>
+          </div>
+          <div class="signal-card">
+            <span>Best with</span>
+            <strong>Inventory tools, dashboards, and organized workflows</strong>
+          </div>
+          <div class="signal-card">
+            <span>Learning path</span>
+            <strong>IT support, cloud computing, and cybersecurity</strong>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container about-grid">
+      <div class="panel-card reveal">
+        <div class="section-head">
+          <p class="section-label">About</p>
+          <h2 class="section-title">A practical builder with an engineering mindset</h2>
+          <p class="section-copy">
+            My goal is to grow into a dependable developer who can understand the problem,
+            design a clean solution, and keep improving it through testing, feedback, and support.
+          </p>
+        </div>
+        <div class="tag-row">
+          <span class="tag">Computer Engineering</span>
+          <span class="tag">Web Systems</span>
+          <span class="tag">Networking Basics</span>
+          <span class="tag">Hardware Troubleshooting</span>
+        </div>
+        <p class="body-copy">
+          I am a motivated and detail-oriented student who likes working on software that feels
+          useful in the real world. I am especially interested in systems that help users stay
+          organized, informed, and efficient.
+        </p>
+        <p class="body-copy">
+          Alongside development, I am strengthening the way I plan layouts, organize user flows,
+          and turn ideas into interfaces that are clean, functional, and easy to understand.
+        </p>
+      </div>
+
+      <div class="panel-card reveal">
+        <div class="fact-grid">
+          <div class="fact-card">
+            <span>Program</span>
+            <strong>Bachelor of Science in Computer Engineering</strong>
+          </div>
+          <div class="fact-card">
+            <span>Location</span>
+            <strong>Naga City, Cebu, Philippines</strong>
+          </div>
+          <div class="fact-card">
+            <span>Strength</span>
+            <strong>Clear problem-solving and organized execution</strong>
+          </div>
+          <div class="fact-card">
+            <span>Looking for</span>
+            <strong>Frontend work opportunities</strong>
+          </div>
+        </div>
+
+        <div class="list-block">
+          <div class="list-item">Builds web-based systems that reduce manual work and improve visibility.</div>
+          <div class="list-item">Learns quickly through project practice, observation, and documentation.</div>
+          <div class="list-item">Comfortable supporting users through setup, troubleshooting, and technical guidance.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="section-label">Skills</p>
+        <h2 class="section-title">What I work with right now</h2>
+        <p class="section-copy">
+          Instead of guessing percentages, this section shows the areas I am actively using,
+          strengthening, and learning through school, hands-on practice, and personal projects.
+        </p>
+      </div>
+
+      <div class="skills-grid">
+        <article class="skill-card reveal">
+          <p class="skill-topline">Frontend foundations</p>
+          <h3>HTML, CSS, and JavaScript</h3>
+          <p>I build responsive page layouts, organize UI sections clearly, and create clean user flows for small web systems.</p>
+          <div class="mini-tags">
+            <span>Responsive layout</span>
+            <span>Forms</span>
+            <span>UI structure</span>
+          </div>
+        </article>
+
+        <article class="skill-card reveal">
+          <p class="skill-topline">Application thinking</p>
+          <h3>Web systems and dashboards</h3>
+          <p>I enjoy building tools that organize information such as sales tracking, transport scheduling, and educational interfaces.</p>
+          <div class="mini-tags">
+            <span>CRUD ideas</span>
+            <span>Workflow planning</span>
+            <span>Data display</span>
+          </div>
+        </article>
+
+        <article class="skill-card reveal">
+          <p class="skill-topline">Programming practice</p>
+          <h3>Basic Python</h3>
+          <p>I use Python for beginner-level logic building and to strengthen problem-solving beyond the browser.</p>
+          <div class="mini-tags">
+            <span>Logic</span>
+            <span>Beginner scripting</span>
+            <span>Learning by projects</span>
+          </div>
+        </article>
+
+        <article class="skill-card reveal">
+          <p class="skill-topline">Infrastructure basics</p>
+          <h3>Networking concepts</h3>
+          <p>I understand core ideas such as IP addressing, DNS, LAN and WAN setup, and the basics of connectivity troubleshooting.</p>
+          <div class="mini-tags">
+            <span>IP</span>
+            <span>DNS</span>
+            <span>LAN/WAN</span>
+          </div>
+        </article>
+
+        <article class="skill-card reveal">
+          <p class="skill-topline">Hands-on support</p>
+          <h3>Hardware and operating systems</h3>
+          <p>I am comfortable with basic troubleshooting, software installation, and practical Windows setup tasks that support everyday computer use.</p>
+          <div class="mini-tags">
+            <span>Windows</span>
+            <span>Diagnostics</span>
+            <span>Support workflow</span>
+          </div>
+        </article>
+
+        <article class="skill-card reveal">
+          <p class="skill-topline">Design and usability</p>
+          <h3>Responsive UI and layout refinement</h3>
+          <p>I pay attention to layout balance, readability, and mobile-friendly structure so each page feels cleaner and easier to use.</p>
+          <div class="mini-tags">
+            <span>Spacing</span>
+            <span>Visual hierarchy</span>
+            <span>Mobile layout</span>
+          </div>
+        </article>
+
+        <article class="skill-card reveal">
+          <p class="skill-topline">Publishing workflow</p>
+          <h3>GitHub and Netlify deployment</h3>
+          <p>I can organize project files, update portfolio pages, and publish frontend work online so projects are ready to share with others.</p>
+          <div class="mini-tags">
+            <span>GitHub</span>
+            <span>Netlify</span>
+            <span>Project updates</span>
+          </div>
+        </article>
+
+        <article class="skill-card reveal">
+          <p class="skill-topline">Build process</p>
+          <h3>Debugging and iteration</h3>
+          <p>I improve projects by testing what works, fixing UI issues, adjusting content, and refining details based on feedback.</p>
+          <div class="mini-tags">
+            <span>Bug fixing</span>
+            <span>Testing changes</span>
+            <span>Polish</span>
+          </div>
+        </article>
+
+        <article class="skill-card reveal">
+          <p class="skill-topline">Team readiness</p>
+          <h3>Documentation and productivity tools</h3>
+          <p>I work comfortably with Microsoft Office and Google Workspace and pay attention to organized communication and detail.</p>
+          <div class="mini-tags">
+            <span>Word</span>
+            <span>Excel</span>
+            <span>Google Workspace</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="section-label">Projects</p>
+        <h2 class="section-title">Work that shows how I think</h2>
+        <p class="section-copy">
+          These projects focus on organization, usability, and practical value. They are the
+          strongest proof points for the kind of systems I want to keep building.
+        </p>
+      </div>
+
+      <div class="projects-grid">
+        <article class="project-card reveal">
+          <div class="project-title-row">
+            <div>
+              <p class="project-topline">Inventory management</p>
+              <h3>Tindahan Tracker</h3>
+            </div>
+            <span class="project-status">Featured</span>
+          </div>
+          <p>
+            A web-based system that helps store owners manage inventory, sales, and product
+            information in one place to reduce manual work and improve accuracy.
+          </p>
+          <ul class="project-list">
+            <li>Focused on making daily store tasks easier to track and update.</li>
+            <li>Designed around practical business needs instead of abstract features.</li>
+            <li>Built to support clearer product records and more organized operations.</li>
+          </ul>
+          <div class="mini-tags">
+            <span>Inventory</span>
+            <span>Sales tracking</span>
+            <span>Small business workflow</span>
+          </div>
+          <div class="project-actions">
+            <a class="btn-inline" href="https://tindahan-tracker.onrender.com/" target="_blank" rel="noreferrer">View live project</a>
+            <a class="btn-inline" href="#contact">Contact me</a>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-title-row">
+            <div>
+              <p class="project-topline">Transport operations</p>
+              <h3>TransitPro Bus Ticketing System</h3>
+            </div>
+            <span class="project-status">Preview ready</span>
+          </div>
+          <p>
+            A web-based platform for managing bus routes, schedules, and trip details in real time.
+            The goal is to help both operators and passengers stay informed with less confusion.
+          </p>
+          <ul class="project-list">
+            <li>Shows how I approach structured data, scheduling, and service information.</li>
+            <li>Includes a passenger-facing experience with a clear contact path for project walkthroughs and collaboration.</li>
+            <li>Built around clarity, organization, and smoother transport workflows.</li>
+          </ul>
+          <div class="mini-tags">
+            <span>Routes</span>
+            <span>Schedules</span>
+            <span>Admin dashboard</span>
+          </div>
+          <div class="project-actions">
+            <a class="btn-inline" href="https://transitpro-bus-system-2.onrender.com/" target="_blank" rel="noreferrer">View live project</a>
+            <a class="btn-inline" href="#contact">Contact me</a>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-title-row">
+            <div>
+              <p class="project-topline">Educational concept tool</p>
+              <h3>Crypto Calendar</h3>
+            </div>
+            <span class="project-status">Live project</span>
+          </div>
+          <p>
+            A web-based educational tool that demonstrates basic cryptocurrency and digital asset
+            concepts through market-style views and simulated wallet interaction.
+          </p>
+          <ul class="project-list">
+            <li>Explains technical topics through an interface that feels approachable.</li>
+            <li>Balances simple presentation with enough system behavior to teach concepts.</li>
+            <li>Reflects my interest in emerging technology and product-focused learning tools.</li>
+          </ul>
+          <div class="mini-tags">
+            <span>Education</span>
+            <span>Crypto concepts</span>
+            <span>Simulation UI</span>
+          </div>
+          <div class="project-actions">
+            <a class="btn-inline" href="https://crypto-iz65.onrender.com/" target="_blank" rel="noreferrer">View live project</a>
+            <a class="btn-inline" href="#contact">Contact me</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="section-label">Experience</p>
+        <h2 class="section-title">Frontend development experience</h2>
+        <p class="section-copy">
+          My strongest experience so far comes from building project-based web interfaces that
+          focus on clarity, usability, and solving practical problems for real users.
+        </p>
+      </div>
+
+      <div class="timeline">
+        <article class="timeline-card reveal">
+          <p class="timeline-meta">2024 - Present project-based work</p>
+          <h3>Frontend Developer - Personal and Academic Projects</h3>
+          <p>Independent and school-based web development work</p>
+          <div class="list-block">
+            <div class="list-item">Built responsive frontend interfaces for systems such as Tindahan Tracker, TransitPro, and Crypto Calendar.</div>
+            <div class="list-item">Designed page structure, content flow, and user-facing screens to keep each project easy to navigate and understand.</div>
+            <div class="list-item">Used HTML, CSS, and JavaScript to turn project ideas into working web experiences with cleaner layouts and clearer interaction points.</div>
+            <div class="list-item">Improved presentation of data, actions, and project information so the interfaces felt more practical for real users.</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="section-label">Education</p>
+        <h2 class="section-title">Academic background and growth areas</h2>
+        <p class="section-copy">
+          I am still early in my career, so this portfolio highlights my learning direction as much
+          as my current output. That honesty makes the work more credible.
+        </p>
+      </div>
+
+      <div class="edu-grid">
+        <article class="edu-card reveal">
+          <span>Degree</span>
+          <strong>Bachelor of Science in Computer Engineering</strong>
+          <p>University of Cebu - Main Campus</p>
+          <p>Expected graduation: 2027</p>
+        </article>
+
+        <article class="edu-card reveal">
+          <span>Current strengths</span>
+          <strong>Organized execution and willingness to learn</strong>
+          <p>Problem-solving, teamwork, time management, attention to detail, and steady improvement through practice.</p>
+        </article>
+
+        <article class="edu-card reveal">
+          <span>Tools</span>
+          <strong>Office and productivity workflow</strong>
+          <p>Microsoft Word, Excel, PowerPoint, and Google Workspace for communication and documentation.</p>
+        </article>
+
+        <article class="edu-card reveal">
+          <span>Learning next</span>
+          <strong>Cloud, cybersecurity, and deeper software skills</strong>
+          <p>I want to keep growing beyond basics and turn classroom knowledge into stronger technical results.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container contact-grid">
+      <div class="contact-stack reveal">
+        <div class="section-head">
+          <p class="section-label">Contact</p>
+          <h2 class="section-title">Let us start with a conversation</h2>
+          <p class="section-copy">
+            If you are looking for someone who is reliable, eager to learn, and serious about
+            building useful software, I would be glad to connect.
+          </p>
+        </div>
+
+        <article class="contact-card">
+          <h3>Email</h3>
+          <p>
+            <a
+              class="email-link"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=ivansayloon20@gmail.com&su=Portfolio%20Inquiry"
+              target="_blank"
+              rel="noreferrer"
+              data-email-subject="Portfolio Inquiry"
+            >ivansayloon20@gmail.com</a>
+          </p>
+        </article>
+
+        <article class="contact-card">
+          <h3>Phone</h3>
+          <p><a href="tel:+639283348556">0928 334 8556</a></p>
+        </article>
+
+        <article class="contact-card">
+          <h3>Location</h3>
+          <p>Naga City, Cebu, Philippines</p>
+        </article>
+
+      </div>
+
+      <div class="contact-form reveal">
+        <h3>Send a message</h3>
+        <p class="form-helper">
+          This form opens a pre-filled Gmail draft so visitors can quickly contact me from the site.
+        </p>
+
+        <form
+          id="contactForm"
+          name="contact"
+          method="POST"
+        >
+          <div class="form-row">
+            <div class="field">
+              <label for="firstName">First name</label>
+              <input id="firstName" name="firstName" type="text" placeholder="Your first name" required />
+            </div>
+            <div class="field">
+              <label for="lastName">Last name</label>
+              <input id="lastName" name="lastName" type="text" placeholder="Your last name" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="email">Email address</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required />
+          </div>
+
+          <div class="field">
+            <label for="subject">Subject</label>
+            <input id="subject" name="subject" type="text" placeholder="Internship, collaboration, or project inquiry" required />
+          </div>
+
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell me a little about your opportunity or project." required></textarea>
+          </div>
+
+          <button class="submit-btn" id="submitBtn" type="submit">Send message</button>
+          <p class="submit-note" id="submitNote">Send message opens a Gmail draft with your details already filled in.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-social" aria-label="Social links">
+    <a class="social-icon-link" href="https://www.facebook.com/ivan.sayloon.735" target="_blank" rel="noreferrer" aria-label="Facebook">
+      <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M13.5 21v-7.2h2.4l.36-2.8H13.5V9.22c0-.81.22-1.36 1.39-1.36H16.5V5.35c-.28-.04-1.23-.12-2.34-.12-2.31 0-3.89 1.41-3.89 4v1.77H8v2.8h2.27V21h3.23Z"/>
+      </svg>
+    </a>
+    <a class="social-icon-link" href="https://www.linkedin.com/in/ivan-sayloon-193a913ba/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+      <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6.94 8.5A1.72 1.72 0 1 1 6.93 5a1.72 1.72 0 0 1 0 3.44ZM5.5 9.75h2.87V19H5.5V9.75Zm4.68 0h2.75v1.26h.04c.38-.72 1.32-1.48 2.72-1.48 2.9 0 3.43 1.91 3.43 4.39V19h-2.87v-4.47c0-1.07-.02-2.44-1.49-2.44-1.49 0-1.72 1.16-1.72 2.36V19h-2.86V9.75Z"/>
+      </svg>
+    </a>
+    <a class="social-icon-link" href="https://github.com/ivansayloon2004" target="_blank" rel="noreferrer" aria-label="GitHub">
+      <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 .5C5.65.5.5 5.66.5 12.03c0 5.1 3.3 9.43 7.88 10.96.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.55-3.88-1.55-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.76.4-1.26.73-1.55-2.55-.3-5.23-1.28-5.23-5.68 0-1.26.45-2.29 1.18-3.1-.12-.3-.51-1.5.11-3.13 0 0 .96-.3 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.48 3.15-1.18 3.15-1.18.62 1.63.23 2.83.11 3.13.73.81 1.18 1.84 1.18 3.1 0 4.41-2.68 5.38-5.24 5.67.41.35.78 1.05.78 2.12 0 1.53-.01 2.76-.01 3.14 0 .31.21.67.8.56A11.54 11.54 0 0 0 23.5 12.03C23.5 5.66 18.35.5 12 .5Z"/>
+      </svg>
+    </a>
+    <a class="social-icon-link" href="https://mail.google.com/mail/?view=cm&fs=1&to=ivansayloon20@gmail.com&su=Portfolio%20Inquiry" target="_blank" rel="noreferrer" aria-label="Gmail">
+      <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3 6.75A1.75 1.75 0 0 1 4.75 5h14.5A1.75 1.75 0 0 1 21 6.75v10.5A1.75 1.75 0 0 1 19.25 19H4.75A1.75 1.75 0 0 1 3 17.25V6.75Zm1.5.32v9.98c0 .14.11.25.25.25h1.8V10.1L12 14.27l5.45-4.17v7.2h1.8c.14 0 .25-.11.25-.25V7.07l-7.2 5.5-7.8-5.5Z"/>
+      </svg>
+    </a>
+  </div>
+  <div class="container footer-shell">
+    <p><strong>Ivan Rhay L. Sayloon</strong> - Computer Engineering student focused on practical, useful systems.</p>
+    <p>&copy; <span id="currentYear"></span> Ivan Sayloon</p>
+  </div>
+</footer>
+
+<script>
+  const html = document.documentElement;
+  const themeToggle = document.getElementById("themeToggle");
+  const navLinks = document.getElementById("navLinks");
+  const hamburger = document.getElementById("hamburger");
+  const submitBtn = document.getElementById("submitBtn");
+  const contactForm = document.getElementById("contactForm");
+  const submitNote = document.getElementById("submitNote");
+  const emailLinks = document.querySelectorAll(".email-link");
+  const directEmail = "ivansayloon20@gmail.com";
+
+  function syncThemeButton() {
+    themeToggle.textContent = html.dataset.theme === "dark" ? "Light mode" : "Dark mode";
+  }
+
+  themeToggle.addEventListener("click", () => {
+    html.dataset.theme = html.dataset.theme === "dark" ? "light" : "dark";
+    syncThemeButton();
+  });
+
+  syncThemeButton();
+
+  hamburger.addEventListener("click", () => {
+    navLinks.classList.toggle("open");
+  });
+
+  navLinks.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => navLinks.classList.remove("open"));
+  });
+
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  document.querySelectorAll(".reveal").forEach((item) => revealObserver.observe(item));
+
+  const sections = Array.from(document.querySelectorAll("section[id]"));
+  const navAnchors = Array.from(document.querySelectorAll(".nav-links a"));
+
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+        const currentId = entry.target.getAttribute("id");
+        navAnchors.forEach((anchor) => {
+          anchor.classList.toggle("current", anchor.getAttribute("href") === "#" + currentId);
+        });
+      });
+    },
+    { rootMargin: "-35% 0px -45% 0px", threshold: 0.01 }
+  );
+
+  sections.forEach((section) => sectionObserver.observe(section));
+
+  function buildGmailComposeUrl(subject = "", body = "") {
+    const params = new URLSearchParams({
+      view: "cm",
+      fs: "1",
+      to: directEmail
+    });
+    if (subject) {
+      params.set("su", subject);
+    }
+    if (body) {
+      params.set("body", body);
+    }
+    return "https://mail.google.com/mail/?" + params.toString();
+  }
+
+  function openEmailDraft(subject = "", body = "") {
+    const gmailUrl = buildGmailComposeUrl(subject, body);
+    const draftWindow = window.open(gmailUrl, "_blank", "noopener");
+    if (!draftWindow) {
+      window.location.href = gmailUrl;
+    }
+  }
+
+  emailLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      openEmailDraft(link.dataset.emailSubject || "", link.dataset.emailBody || "");
+    });
+  });
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    if (!contactForm.checkValidity()) {
+      contactForm.reportValidity();
+      return false;
+    }
+
+    const firstName = contactForm.elements.firstName.value.trim();
+    const lastName = contactForm.elements.lastName.value.trim();
+    const senderEmail = contactForm.elements.email.value.trim();
+    const subject = contactForm.elements.subject.value.trim();
+    const message = contactForm.elements.message.value.trim();
+    const fullName = (firstName + " " + lastName).trim();
+    const body = [
+      "Name: " + fullName,
+      "Email: " + senderEmail,
+      "",
+      message
+    ].join("\n");
+
+    openEmailDraft(subject, body);
+
+    submitBtn.textContent = "Email draft opened";
+    submitBtn.disabled = true;
+    submitNote.classList.remove("success", "error");
+    submitNote.textContent = "Your Gmail draft was opened in a new tab.";
+    submitNote.classList.add("success");
+    contactForm.reset();
+
+    window.setTimeout(() => {
+      submitBtn.textContent = "Send message";
+      submitBtn.disabled = false;
+      submitNote.textContent = "Send message opens a Gmail draft with your details already filled in.";
+      submitNote.classList.remove("success");
+    }, 2500);
+
+    return false;
+  }
+
+  contactForm.addEventListener("submit", handleSubmit);
+
+  document.getElementById("currentYear").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
